@@ -15,6 +15,8 @@ class Earthquake(db.Model):
     url = db.Column(db.String)
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
+    coordinates = db.Column(db.String)
+    location = db.Column(db.String)
     magnitude = db.Column(db.Float)
     dateTime = db.Column(db.DateTime)
     type = db.Column(db.String)
@@ -32,7 +34,7 @@ def connect_to_db(flask_app, db_uri="postgresql:///earthquakes", echo=True):
     print("Connected to the db!")
 
     def __repr__(self):
-        return f'<Earthquake id={self.id} on {self.time}'
+        return f'<Earthquake id={self.location} on {self.dateTime}'
 
 
 if __name__ == "__main__":

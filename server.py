@@ -1,8 +1,8 @@
 """Server for earthquake  app."""
 
-from flask import (Flask, render_template, request, flash, session,
-                   redirect)
-# from model import connect_to_db, db
+from flask import (Flask, render_template, request, session,
+                   redirect, jsonify, send_from_directory)
+from model import connect_to_db, db, Earthquake
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
@@ -14,10 +14,34 @@ def homepage():
     """View Homepage"""
     return render_template("homepage.html")
 
-@app.route("/map")
-def bing_map():
-    return render_template("map.html")
+@app.route("/map/earthquakes")
+def earthquake_map():
+    """Shows a map of earthquakes"""
+    return render_template("gmap.html")
+
+@app.route("/api/earthquakes")
+def earthquake_info():
+    earthquakes_map = []
+    for earthquake in Earthquake.query.limit(100):
+        earthquakes_map.append({
+            "url": earthquake.url,
+            "latitude": earthquake.latitude,
+            "longitude": earthquake.longitude,
+            "coordinates": earthquake.coordinates,
+            "location": earthquake.location,
+            "magnitude": earthquake.magnitude,
+            "dateTime": earthquake.dateTime,
+            "type":earthquake.type,
+            "depth":earthquake.depth
+        })
+    return jsonify(earthquakes_map)
+
+
+@app.route("/map/static/<path:resource>")
+def get_resource(resource):
+    return send_from_directory("static", resource)
+
 
 if __name__ == '__main__':
-    # connect_to_db(app)
+    connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

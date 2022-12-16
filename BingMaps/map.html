@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block head %} 
+<title></title>
+<meta charset="utf-8" />
+
+<!-- Reference to the Bing Maps SDK -->
+<script type='text/javascript'
+        src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AIzaSyB_6h3c10bbsC6fCLl7HZJyA_PjMVStDps' 
+        async defer></script>
+
+<script type='text/javascript'>
+function GetMap()
+{
+    var map = new Microsoft.Maps.Map('#earthquakeMap');
+
+    //Add your post map load code here.
+}
+</script>
+{% endblock %}
+    
+{% block body %}
+    <script src="/static/js/earthquakeMap.js"></script>
+    <div id="earthquakeMap" style="position:relative;width:600px;height:400px;"></div>
+{% endblock %}

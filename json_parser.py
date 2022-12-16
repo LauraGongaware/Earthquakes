@@ -24,6 +24,8 @@ def parse_entry(entry):
     "url":entry["properties"]["url"],
     "latitude":entry["geometry"]["coordinates"][1],
     "longitude":entry["geometry"]["coordinates"][0],
+    "coordinates":entry["geometry"]["coordinates"][0:2],
+    "location":entry["properties"]["place"],
     "magnitude":float(entry["properties"]["mag"]),
     "dateTime":datetime.fromtimestamp(entry["properties"]["time"]/1000.0),
     "type":entry["properties"]["type"],
