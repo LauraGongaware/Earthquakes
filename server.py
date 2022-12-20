@@ -14,6 +14,12 @@ def homepage():
     """View Homepage"""
     return render_template("homepage.html")
 
+@app.route("/mapbox")
+def mapbox():
+    """Interactive map showing earthquakes over time"""
+    return render_template("mapbox.html")
+
+
 @app.route("/map/earthquakes")
 def earthquake_map():
     """Shows a map of earthquakes"""
@@ -28,6 +34,7 @@ def earthquake_info():
             "latitude": earthquake.latitude,
             "longitude": earthquake.longitude,
             "coordinates": earthquake.coordinates,
+            "geojson": earthquake.geojson,
             "location": earthquake.location,
             "magnitude": earthquake.magnitude,
             "dateTime": earthquake.dateTime,
