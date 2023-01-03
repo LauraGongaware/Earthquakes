@@ -29,24 +29,7 @@ function initMap() {
     .then((response) => response.json())
     .then((earthquakes) => {
       for (const earthquake of earthquakes) {
-
-
-        // a slider for the map
-        // var sliderDiv = document.createElement('div');
-        // var slider = document.createElement('input');
-        // slider.type = 'range';
-        // slider.min = earthquake.dateTime[0];
-        // slider.max = earthquake.dateTime[99];
-        // slider.value = 50; 
-        // slider.label = earthquake.dateTime.value
-        // sliderDiv.appendChild(slider);
-        // map.controls[google.maps.ControlPosition.TOP_LEFT].push(sliderDiv);
-  
-        // slider.addEventListener('input', function() {
-        //   updateMap(this.value);
-        // });
-
-
+        
         // Define the content of the infoWindow
         const earthquakeInfoContent = `
         <div class="window-content">

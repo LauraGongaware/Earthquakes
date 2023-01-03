@@ -51,3 +51,13 @@
 //         : response.text()
 //     );
 
+// "geometry": {
+//     "type": "Point",
+//     "coordinates": [
+//         -124.423,
+//         40.525,
+//         17.91
+//     ]
+// },
+
+

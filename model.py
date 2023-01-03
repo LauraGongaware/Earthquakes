@@ -1,6 +1,7 @@
 """Model for earthquake."""
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import JSON
 
 db = SQLAlchemy()
 
@@ -16,7 +17,6 @@ class Earthquake(db.Model):
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
     coordinates = db.Column(db.String)
-    geojson = db.Column(db.String)
     location = db.Column(db.String)
     magnitude = db.Column(db.Float)
     dateTime = db.Column(db.DateTime)

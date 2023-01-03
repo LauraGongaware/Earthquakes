@@ -25,7 +25,6 @@ def parse_entry(entry):
     "latitude":entry["geometry"]["coordinates"][1],
     "longitude":entry["geometry"]["coordinates"][0],
     "coordinates":entry["geometry"]["coordinates"][0:2],
-    "geojson":json.dumps(entry["geometry"]),
     "location":entry["properties"]["place"],
     "magnitude":float(entry["properties"]["mag"]),
     "dateTime":datetime.fromtimestamp(entry["properties"]["time"]/1000.0),

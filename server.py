@@ -4,6 +4,7 @@ from flask import (Flask, render_template, request, session,
                    redirect, jsonify, send_from_directory)
 from model import connect_to_db, db, Earthquake
 from jinja2 import StrictUndefined
+import json
 
 app = Flask(__name__)
 # app.secret_key = "dev"
@@ -19,6 +20,11 @@ def mapbox():
     """Interactive map showing earthquakes over time"""
     return render_template("mapbox.html")
 
+@app.route("/mapbox2")
+def mapbox2():
+    """Interactive map showing earthquakes over time"""
+    return render_template("mapbox2.html")
+
 
 @app.route("/map/earthquakes")
 def earthquake_map():
@@ -28,20 +34,34 @@ def earthquake_map():
 @app.route("/api/earthquakes")
 def earthquake_info():
     earthquakes_map = []
-    for earthquake in Earthquake.query.limit(100):
+    # for earthquake in Earthquake.query.limit(100):
+    for earthquake in Earthquake.query.all():
+        geoJSON_object = {
+        "type": "Point",
+        "coordinates": [
+            earthquake.longitude,
+            earthquake.latitude,
+            earthquake.depth
+            ]
+            }
+
         earthquakes_map.append({
             "url": earthquake.url,
             "latitude": earthquake.latitude,
             "longitude": earthquake.longitude,
             "coordinates": earthquake.coordinates,
-            "geojson": earthquake.geojson,
+            "geometry": geoJSON_object,
             "location": earthquake.location,
             "magnitude": earthquake.magnitude,
             "dateTime": earthquake.dateTime,
-            "type":earthquake.type,
             "depth":earthquake.depth
         })
-    return jsonify(earthquakes_map)
+    data_object = {
+        "type": "FeatureCollection",
+        "features":earthquakes_map
+    }
+
+    return jsonify(data_object)
 
 
 @app.route("/map/static/<path:resource>")

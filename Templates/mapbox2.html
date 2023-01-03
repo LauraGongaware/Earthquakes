@@ -98,14 +98,14 @@ function filterBy(year) {
  
 map.on('load', () => {
 // Data from http://earthquake.usgs.gov/
-// Query for significant earthquakes in the last 10 years:
+// Query for significant earthquakes in the last 10:
 // http://earthquake.usgs.gov/fdsnws/event/1/query
 //    ?format=geojson
 //    &starttime=2012-01-01
 //    &endtime=2022-12-31
 //    &minmagnitude=6'
     d3.json(
-        'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2012-01-01&endtime=2022-12-31&minmagnitude=6',
+        '/api/earthquakes',
         jsonCallback
     );
 });
@@ -117,12 +117,10 @@ function jsonCallback(err, data) {
  
 // Create a year property value based on time used to filter.
     data.features = data.features.map((d) => {
-        d.properties.year = new Date(d.properties.time).getFullYear();
+        d.year = new Date(d.dateTime).getFullYear();
         return d;
     });
-    
- console.log(data);
-
+ 
 map.addSource('earthquakes', {
     'type': 'geojson',
     data: data
@@ -136,8 +134,8 @@ map.addLayer({
         'circle-color': [
         'interpolate',
         ['linear'],
-        ['get', 'mag'],
-        6,
+        ['get', 'magnitude'],
+        2,
         '#FCA107',
         8,
         '#7F3121'
@@ -146,8 +144,8 @@ map.addLayer({
     'circle-radius': [
     'interpolate',
     ['linear'],
-    ['get', 'mag'],
-    6,
+    ['get', 'magnitude'],
+    2,
     20,
     8,
     40
@@ -160,7 +158,7 @@ map.addLayer({
     'type': 'symbol',
     'source': 'earthquakes',
     'layout': {
-    'text-field': ['concat', ['to-string', ['get', 'mag']]],
+    'text-field': ['concat', ['to-string', ['get', 'magnitude']]],
     'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
     'text-size': 12
 },
