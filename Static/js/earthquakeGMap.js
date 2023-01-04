@@ -25,10 +25,10 @@ function initMap() {
   const earthquakeInfo = new google.maps.InfoWindow();
 
   // Retrieving the information with AJAX.
-  fetch('/api/earthquakes')
+  fetch('/api/gearthquakes')
     .then((response) => response.json())
     .then((earthquakes) => {
-      for (const earthquake of earthquakes) {
+      for (const earthquake of earthquakes.features) {
         
         // Define the content of the infoWindow
         const earthquakeInfoContent = `

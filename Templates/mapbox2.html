@@ -117,14 +117,19 @@ function jsonCallback(err, data) {
  
 // Create a year property value based on time used to filter.
     data.features = data.features.map((d) => {
-        d.year = new Date(d.dateTime).getFullYear();
+        d.properties.year = new Date(d.properties.dateTime).getFullYear();
+        // console.log(d.year);
         return d;
     });
  
+console.log(data);
+
 map.addSource('earthquakes', {
     'type': 'geojson',
     data: data
 });
+
+// console.log(map.getStyle().layers);
  
 map.addLayer({
     'id': 'earthquake-circles',
@@ -132,26 +137,29 @@ map.addLayer({
     'source': 'earthquakes',
     'paint': {
         'circle-color': [
+            'interpolate',
+            ['linear'],
+            ['get', 'magnitude'],
+            2,
+            '#FCA107',
+            8,
+            '#7F3121'
+        ],
+        'circle-opacity': 0.75,
+        'circle-radius': [
         'interpolate',
         ['linear'],
         ['get', 'magnitude'],
         2,
-        '#FCA107',
+        20,
         8,
-        '#7F3121'
-    ],
-    'circle-opacity': 0.75,
-    'circle-radius': [
-    'interpolate',
-    ['linear'],
-    ['get', 'magnitude'],
-    2,
-    20,
-    8,
-    40
+        40
         ]
     }
 });
+
+// console.log(map.getStyle().layers);
+// console.log(map.getStyle().sources);
  
 map.addLayer({
     'id': 'earthquake-labels',

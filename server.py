@@ -4,6 +4,7 @@ from flask import (Flask, render_template, request, session,
                    redirect, jsonify, send_from_directory)
 from model import connect_to_db, db, Earthquake
 from jinja2 import StrictUndefined
+from sqlalchemy import (func, extract)
 import json
 
 app = Flask(__name__)
@@ -15,10 +16,12 @@ def homepage():
     """View Homepage"""
     return render_template("homepage.html")
 
+
 @app.route("/mapbox")
 def mapbox():
     """Interactive map showing earthquakes over time"""
     return render_template("mapbox.html")
+
 
 @app.route("/mapbox2")
 def mapbox2():
@@ -30,6 +33,7 @@ def mapbox2():
 def earthquake_map():
     """Shows a map of earthquakes"""
     return render_template("gmap.html")
+
 
 @app.route("/api/earthquakes")
 def earthquake_info():
@@ -45,12 +49,40 @@ def earthquake_info():
             ]
             }
 
-        earthquakes_map.append({
+        properties = {
             "url": earthquake.url,
             "latitude": earthquake.latitude,
             "longitude": earthquake.longitude,
-            "coordinates": earthquake.coordinates,
+            "location": earthquake.location,
+            "magnitude": earthquake.magnitude,
+            "dateTime": earthquake.dateTime,
+            "depth":earthquake.depth
+        }
+
+        earthquakes_map.append({
+            "type": "Feature",
             "geometry": geoJSON_object,
+            "properties": properties
+            
+        })
+    data_object = {
+        "type": "FeatureCollection",
+        "features": earthquakes_map
+    }
+
+    return jsonify(data_object)
+
+
+@app.route("/api/gearthquakes")
+def earthquake_gmap_info():
+    earthquakes_gmap = []
+    # for earthquake in Earthquake.query.limit(100):
+    for earthquake in Earthquake.query.filter(extract('year', Earthquake.dateTime).in_([2022, 2023])).all():
+
+        earthquakes_gmap.append({
+            "url": earthquake.url,
+            "latitude": earthquake.latitude,
+            "longitude": earthquake.longitude,
             "location": earthquake.location,
             "magnitude": earthquake.magnitude,
             "dateTime": earthquake.dateTime,
@@ -58,7 +90,7 @@ def earthquake_info():
         })
     data_object = {
         "type": "FeatureCollection",
-        "features":earthquakes_map
+        "features": earthquakes_gmap
     }
 
     return jsonify(data_object)

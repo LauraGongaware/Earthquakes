@@ -118,6 +118,7 @@ function jsonCallback(err, data) {
 // Create a year property value based on time used to filter.
     data.features = data.features.map((d) => {
         d.properties.year = new Date(d.properties.time).getFullYear();
+        // console.log(d.properties.year);
         return d;
     });
     
@@ -127,7 +128,9 @@ map.addSource('earthquakes', {
     'type': 'geojson',
     data: data
 });
- 
+
+// console.log(map.getStyle().layers);
+
 map.addLayer({
     'id': 'earthquake-circles',
     'type': 'circle',
@@ -154,6 +157,9 @@ map.addLayer({
         ]
     }
 });
+
+// console.log(map.getStyle().layers);
+// console.log(map.getStyle().sources);
  
 map.addLayer({
     'id': 'earthquake-labels',
