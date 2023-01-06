@@ -59,7 +59,12 @@ cursor: ew-resize;
 <h2>Significant earthquakes in the last decade</h2>
 <p><h3>Magnitude 6 or greater</h3></p>
 <label id="year"></label>
-<input id="slider" type="range" min="0" max="10" step="1" value="0">
+<input id="slider" type="range" min="0" max="11" step="1" value="0">
+<div class="map-overlay-inner">
+    <div id="legend" class="legend">
+    <div class="bar"></div>
+    <div>Magnitude (m)</div>
+    </div>
 </div>
 </div>
  
@@ -68,7 +73,7 @@ cursor: ew-resize;
 	mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFnb25nYXdhcmUiLCJhIjoiY2xicXlodmNjMHB1cDNvcGtyZ2hhbWQ0YSJ9.xjGj04qlks3eDK59AOh0cg';
 const map = new mapboxgl.Map({
 container: 'map',
-style: 'mapbox://styles/lauragongaware/clbqyns0a000016nxbi0l5pq6',
+style: 'mapbox://styles/lauragongaware/clcipnoj5005d14p85z0j5ck3',
 center: [-125, 45],
 zoom: 3
 });
@@ -85,7 +90,11 @@ const years = [
 2020,
 2021,
 2022,
+2023,
 ];
+
+const min_magnitude = 3
+
  
 function filterBy(year) {
     const filters = ['==', "year", years[year]];
@@ -97,15 +106,8 @@ function filterBy(year) {
 }
  
 map.on('load', () => {
-// Data from http://earthquake.usgs.gov/
-// Query for significant earthquakes in the last 10:
-// http://earthquake.usgs.gov/fdsnws/event/1/query
-//    ?format=geojson
-//    &starttime=2012-01-01
-//    &endtime=2022-12-31
-//    &minmagnitude=6'
     d3.json(
-        '/api/earthquakes',
+        '/api/significant_earthquakes',
         jsonCallback
     );
 });

@@ -1,0 +1,52 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    }
+
+body {
+    opacity: 0;
+    transition: opacity 5s;
+}
+
+.parallax {
+    /* height: 100%;  */
+    height: 400px;
+  }
+
+  /* (A) WRAPPER */
+.hoverwrap {
+    position: relative; /* required for (c2) */
+    /* max-width: 500px; */
+    width: 400px;
+  }
+  
+  /* (B) RESPONSIVE IMAGE */
+  .hoverwrap img { width: 100%; }
+  
+  /* (C) CAPTION */
+  .hovercap {
+    /* (C1) DIMENSIONS */
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+   
+    /* (C2) PLACE AT BOTTOM */
+    position: absolute;
+    bottom: 22%; left: 0%;
+   
+    /* (C3) COLORS */
+    font: 50px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    text-align: center;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    color: white;
+  }
+  
+  /* (D) SHOW/HIDE */
+  .hovercap {
+    visibility: none; opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hoverwrap:hover .hovercap {
+    visibility: visible; opacity: 1;
+  }

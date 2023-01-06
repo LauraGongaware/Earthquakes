@@ -19,13 +19,13 @@ def homepage():
 
 @app.route("/mapbox")
 def mapbox():
-    """Interactive map showing earthquakes over time"""
+    """Interactive map showing earthquakes over time querying directly from USGS"""
     return render_template("mapbox.html")
 
 
 @app.route("/mapbox2")
 def mapbox2():
-    """Interactive map showing earthquakes over time"""
+    """Interactive map showing significant earthquakes in the last decade with data from the database"""
     return render_template("mapbox2.html")
 
 
@@ -33,6 +33,12 @@ def mapbox2():
 def earthquake_map():
     """Shows a map of earthquakes"""
     return render_template("gmap.html")
+
+
+@app.route("/map/heatmap")
+def heatmap():
+    """Shows a heatmap of earthquakes"""
+    return render_template("heatmap.html")
 
 
 @app.route("/api/earthquakes")
@@ -71,6 +77,44 @@ def earthquake_info():
     }
 
     return jsonify(data_object)
+
+
+
+@app.route("/api/significant_earthquakes")
+def significant_earthquake_info():
+    earthquakes_map = []
+    for earthquake in Earthquake.query.filter(Earthquake.magnitude>6).all():
+        geoJSON_object = {
+        "type": "Point",
+        "coordinates": [
+            earthquake.longitude,
+            earthquake.latitude,
+            earthquake.depth
+            ]
+            }
+
+        properties = {
+            "url": earthquake.url,
+            "latitude": earthquake.latitude,
+            "longitude": earthquake.longitude,
+            "location": earthquake.location,
+            "magnitude": earthquake.magnitude,
+            "dateTime": earthquake.dateTime,
+            "depth":earthquake.depth
+        }
+
+        earthquakes_map.append({
+            "type": "Feature",
+            "geometry": geoJSON_object,
+            "properties": properties
+
+        })
+    data_object = {
+        "type": "FeatureCollection",
+        "features": earthquakes_map
+    }
+    return jsonify(data_object)
+
 
 
 @app.route("/api/gearthquakes")

@@ -1,26 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style type="text/css">
-        h1 {
-            text-align: center;
-        }
- 
-        #ex {
-            text-align: center;
-            background-image:
-url("Static/img/SanAndreas1.jpeg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/pages.css">
+    <script src="/static/js/homepage.js"></script>
+    <style>
+        
     </style>
-</head>
-<body>
-<a href ="/map/earthquakes">Google Maps</a><br>
-<a href = "/mapbox">Mapbox Playground</a><br>
-<a href = "/mapbox2">Mapbox Playground with database</a>
+{% endblock %}
 
+{% block body %}
+<body onload="document.body.style.opacity='1'">
+    <div class="parallax">
+    <script type="text/javascript"> 
+        RandomBackground();
+    </script>
+    </div>
+
+    <div style="height:1000px;background-color:black;font-size:25px; color: white;">
+        <div class="hoverwrap">
+            <a href="/map/earthquakes"><img src="/static/img/Detail.png"/></a>
+            <div class="hovercap">Earthquake Details</div>
+          </div>
+
+        <a href = "/mapbox">Mapbox Playground</a><br>
+        <a href = "/mapbox2">Mapbox Playground with database</a>
+    </div>
 </body>
-
-</html>
+{% endblock %}
