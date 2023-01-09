@@ -23,7 +23,7 @@ def mapbox():
     return render_template("mapbox.html")
 
 
-@app.route("/mapbox2")
+@app.route("/map/mapbox2")
 def mapbox2():
     """Interactive map showing significant earthquakes in the last decade with data from the database"""
     return render_template("mapbox2.html")

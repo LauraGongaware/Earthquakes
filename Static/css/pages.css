@@ -50,3 +50,9 @@ body {
   .hoverwrap:hover .hovercap {
     visibility: visible; opacity: 1;
   }
+
+.backgroundInfo {
+    font: 50px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: relative;
+
+}

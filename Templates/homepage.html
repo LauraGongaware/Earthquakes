@@ -12,17 +12,28 @@
     <div class="parallax">
     <script type="text/javascript"> 
         RandomBackground();
+        // BackgroundInfo();
     </script>
     </div>
 
     <div style="height:1000px;background-color:black;font-size:25px; color: white;">
-        <div class="hoverwrap">
+        <div class="hoverwrap" style="float: left; padding: 20px">
             <a href="/map/earthquakes"><img src="/static/img/Detail.png"/></a>
             <div class="hovercap">Earthquake Details</div>
           </div>
 
-        <a href = "/mapbox">Mapbox Playground</a><br>
-        <a href = "/mapbox2">Mapbox Playground with database</a>
+          <div class="hoverwrap" style="float: left; padding-top: 20px; padding-left: 40px; padding-right: 40px;">
+            <a href="/map/heatmap"><img src="/static/img/heatmap.png"/></a>
+            <div class="hovercap">Heatmap</div>
+          </div>
+
+        <div class="hoverwrap" style="float: right; padding: 20px">
+            <a href="/mapbox2"><img src="/static/img/button.gif"/></a>
+            <div class="hovercap">Significant Earthquakes</div>
+          </div>
     </div>
+    
+    <!-- <div id="backgroundInfo"><script type="text/javascript"> BackgroundInfo();</script></div> -->
+
 </body>
 {% endblock %}

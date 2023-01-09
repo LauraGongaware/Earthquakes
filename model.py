@@ -21,7 +21,7 @@ class Earthquake(db.Model):
     dateTime = db.Column(db.DateTime)
     type = db.Column(db.String)
     depth = db.Column(db.Float)
-    id = db.Column(db.String)
+    id = db.Column(db.String, unique=True)
     
 def connect_to_db(flask_app, db_uri="postgresql:///earthquakes", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
