@@ -80,6 +80,46 @@ def earthquake_info():
 
 
 
+@app.route("/api/heatmap")
+def heatmap_():
+    earthquakes_map = []
+    for earthquake in Earthquake.query.limit(100000):
+    # for earthquake in Earthquake.query.all():
+        geoJSON_object = {
+        "type": "Point",
+        "coordinates": [
+            earthquake.longitude,
+            earthquake.latitude,
+            earthquake.depth
+            ]
+            }
+
+        properties = {
+            "url": earthquake.url,
+            "latitude": earthquake.latitude,
+            "longitude": earthquake.longitude,
+            "location": earthquake.location,
+            "magnitude": earthquake.magnitude,
+            "dateTime": earthquake.dateTime,
+            "depth":earthquake.depth
+        }
+
+        earthquakes_map.append({
+            "type": "Feature",
+            "geometry": geoJSON_object,
+            "properties": properties
+            
+        })
+    data_object = {
+        "type": "FeatureCollection",
+        "features": earthquakes_map
+    }
+
+    return jsonify(data_object)
+
+
+
+
 @app.route("/api/significant_earthquakes")
 def significant_earthquake_info():
     earthquakes_map = []
@@ -121,8 +161,8 @@ def significant_earthquake_info():
 def earthquake_gmap_info():
     earthquakes_gmap = []
     # for earthquake in Earthquake.query.limit(100):
-    for earthquake in Earthquake.query.filter(extract('year', Earthquake.dateTime).in_([2022, 2023])).all():
-
+    # for earthquake in Earthquake.query.filter(extract('year', Earthquake.dateTime).in_([2022, 2023])).all():
+    for earthquake in Earthquake.query.filter(extract('year', Earthquake.dateTime).in_([2022, 2023])).limit(100):
         earthquakes_gmap.append({
             "url": earthquake.url,
             "latitude": earthquake.latitude,

@@ -2,6 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
+    margin-left: auto;
     }
 
 body {
@@ -11,14 +12,15 @@ body {
 
 .parallax {
     /* height: 100%;  */
-    height: 400px;
+    /* height: 575px; */
+    height: 83%;
   }
 
   /* (A) WRAPPER */
 .hoverwrap {
     position: relative; /* required for (c2) */
     /* max-width: 500px; */
-    width: 400px;
+    width: 350px;
   }
   
   /* (B) RESPONSIVE IMAGE */
@@ -26,22 +28,52 @@ body {
   
   /* (C) CAPTION */
   .hovercap {
-    /* (C1) DIMENSIONS */
     box-sizing: border-box;
     width: 100%;
     padding: 10px;
    
-    /* (C2) PLACE AT BOTTOM */
     position: absolute;
-    bottom: 22%; left: 0%;
+    bottom: 25%; left: 0%;
    
     /* (C3) COLORS */
     font: 50px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: bold;
     text-align: center;
-    /* background-color: rgba(0, 0, 0, 0.5); */
     color: white;
+    text-shadow:
+      1px 0 black,
+      0 -1px black,
+      -1px 0 black,
+      0 1px black;
   }
-  
+
+  .hovercap-single {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+   
+    position: absolute;
+    bottom: 35%; left: 0%;
+   
+    font: 50px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    text-shadow:
+      1px 0 black,
+      0 -1px black,
+      -1px 0 black,
+      0 1px black;
+  }
+
+  .hovercap-single {
+    visibility: none; opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hoverwrap:hover .hovercap-single {
+    visibility: visible; opacity: 1;
+  }
+
   /* (D) SHOW/HIDE */
   .hovercap {
     visibility: none; opacity: 0;
@@ -52,7 +84,25 @@ body {
   }
 
 .backgroundInfo {
-    font: 50px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    position: relative;
+    font: 25px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: static;
+}
 
+.static-bottom {
+  color: white;
+  font-size: 12pt;
+  background-color: black;
+  align-items: center;
+  position: static;
+  height: 50px;
+  bottom: 10;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+
+.mapInfoBox {
+  font-size: 15pt;
+  color: white;
+  text-align: center;
 }

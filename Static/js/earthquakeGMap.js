@@ -1,5 +1,6 @@
 'use strict';
 
+
 function initMap() {
   const map = new google.maps.Map(document.querySelector('#map'), {
     center: {
@@ -51,7 +52,7 @@ function initMap() {
           },
           title: `Earthquake ID: ${earthquake.location}`,
           icon: getCircle(earthquake.magnitude),
-          map, // same as saying map: map
+          map,
         });
 
         earthquakeMarker.addListener('click', () => {
@@ -60,12 +61,17 @@ function initMap() {
           earthquakeInfo.open(map, earthquakeMarker);
         });
       }
+      
     })
     .catch(() => {
       alert(`
       We were unable to retrieve data about earthquakes :(
     `);
+    var Marker = new MarkerCluster(map, earthquakeMarker, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    Marker.addMarkers(earthquakeMarker);
     });
+    
+    
 
     function getCircle(magnitude) {
       return {
