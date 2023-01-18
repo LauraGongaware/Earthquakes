@@ -2,16 +2,12 @@
 {% block head %}
     <link rel="stylesheet" href="/static/css/pages.css">
     <script src="/static/js/homepage.js"></script>
-    <!-- <script src="/static/js/homepage.jsx" type="text/jsx"></script> -->
 {% endblock %}
 
-{% block body %}
+<!-- {% block body %} -->
 <body onload="document.body.style.opacity='1'">
     <div class="parallax">
-    <script type="text/javascript"> 
-        RandomBackground();
-        // BackgroundInfo();
-    </script>
+   
     </div>
     <div style="height:700px;background-color:black;font-size:25px; color: white;">
       <div class = "container">
@@ -26,33 +22,29 @@
         <div class="row"; style = "padding-top: 20px">
           <div class ="col">
             <div id="details" class="hoverwrap"> 
-                <a href="/map/earthquakes"><img src="/static/img/Detail.png"/></a>
+                <a href="/map/earthquakes"><img onmouseover="MouseoverDetails(this)" onmouseout="DefaultText(this)" src="/static/img/Detail.png"/></a>
                 <div class="hovercap">Earthquake Details</div>
                 </div>
               </div>
             <div class ="col">
-            <div id="heatmap" class="hoverwrap"> 
+              <div id="heatmap" class="hoverwrap"> 
                 <a href="/map/heatmap"><img onmouseover="MouseoverHeatmap(this)" onmouseout="DefaultText(this)" src="/static/img/heatmap.png"/></a>
                 <div class="hovercap-single">Heatmap</div>
               </div>
             </div>
             <div class ="col">
               <div id="significant" class="hoverwrap">
-                  <a href="/map/mapbox2"><img src="/static/img/button.gif"/></a>
+                  <a href="/map/significant"><img onmouseover="MouseoverSignificant(this)" onmouseout="DefaultText(this)" src="/static/img/button.gif"/></a>
                   <div class="hovercap">Significant Earthquakes</div>
                 </div>
               </div>
           </div>
           <div class="row" style="padding-top: 30px;">
-              <div id="mapInfoBox">
-                <script type="text/javascript"> 
-               DefaultText() 
-              </script>
+              <div id="mapInfoBox" style ="text-align: center;">
               </div>
           </div>
         </div>
       </div>
-  <!-- <div id="backgroundInfo"><script type="text/javascript"> BackgroundInfo();</script></div> -->
   <footer class="static-bottom"; style="background-color: black; padding-bottom: 10px;">
     <div class="container">
       <div class="row">
@@ -62,5 +54,11 @@
       </div>
     </div>
   </footer>  
+  <script type="text/javascript"> 
+    RandomBackground();
+    DefaultText()
+    // BackgroundInfo();
+  </script>
 </body>
-{% endblock %}
+
+<!-- {% endblock %} -->

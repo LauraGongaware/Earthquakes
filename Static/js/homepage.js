@@ -25,22 +25,21 @@ function BackgroundInfo() {
 }
 
 var mapInfoBox = document.getElementById('mapInfoBox');
-var heatmapImg = document.getElementById('heatmap');
-var detailImg = document.getElementById('details');
-var significantImg = document.getElementById('significant');
 var imgButtons = document.querySelectorAll("heatmap, details, significant")
-// const mapInfoBox = ReactDOM.render(<DefaultText />, document.querySelector('#mapInfoBox'));
 
-    // heatmapImg.addEventListener("mouseover", function() {
-    //     MouseoverHeatmap();
-    // });
     function MouseoverHeatmap(){
-        document.getElementById("mapInfoBox").innerHTML = "A map which allows users to view details about a specific earthquake"
-    }
+    (document.getElementById("mapInfoBox").innerHTML = "Interact with a worldwide heatmap of earthquakes showing frequency by location"
+    );}
     
+    function MouseoverSignificant(){ 
+    (document.getElementById("mapInfoBox").innerHTML = "View significant worldwide earthquakes magnitude 6 or greater"
+    );}
+
+    function MouseoverDetails(){
+    (document.getElementById("mapInfoBox").innerHTML = "View a map of recent earthquakes and view additional details"
+    );}
+
     function DefaultText() {
-    ( document.getElementById("mapInfoBox").innerHTML = "Earthquake data obtained from the United States Geological Survey (USGS). Information about each map will change on hover-over"
+    (document.getElementById("mapInfoBox").innerHTML = "Earthquake data obtained from the United States Geological Survey (USGS). Information about each map will change on hover-over"
     );
 }
-
-// ReactDOM.render(<DefaultText />, document.getElementById('#mapInfoBox'));

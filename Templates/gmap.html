@@ -2,19 +2,24 @@
 
 {% block head %}
 <link rel="stylesheet" href="/static/css/maps.css">
-  <!-- <link rel="stylesheet" href="/static/css/bears.css"> -->
 {% endblock %}
 
 {% block body %}
-  <nav>
-    <section id="links-right">
-      <a href="/">Homepage</a>
-    </section>
-  </nav>
+<div class="topnav">
+  <a href="/">Home</a>
+  <a href="/map/heatmap">Heatmap</a>
+  <a class="current" href="/map/earthquakes">Earthquake Details</a>
+  <a href="/map/significant">Significant Earthquakes</a>
+  <a href="">About</a>
+</div>
 
   <section class="map">
     <div id="map"></div>
   </section>
+  
+<style>
+
+  </style>
 
   <script src="/static/js/mapStyles.js"></script>
   <script src="/static/js/earthquakeGMap.js"></script>

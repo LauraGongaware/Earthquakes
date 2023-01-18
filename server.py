@@ -23,7 +23,7 @@ def mapbox():
     return render_template("mapbox.html")
 
 
-@app.route("/map/mapbox2")
+@app.route("/map/significant")
 def mapbox2():
     """Interactive map showing significant earthquakes in the last decade with data from the database"""
     return render_template("mapbox2.html")
@@ -44,8 +44,8 @@ def heatmap():
 @app.route("/api/earthquakes")
 def earthquake_info():
     earthquakes_map = []
-    # for earthquake in Earthquake.query.limit(100):
-    for earthquake in Earthquake.query.all():
+    for earthquake in Earthquake.query.limit(100):
+    # for earthquake in Earthquake.query.all():
         geoJSON_object = {
         "type": "Point",
         "coordinates": [
@@ -116,7 +116,6 @@ def heatmap_():
     }
 
     return jsonify(data_object)
-
 
 
 

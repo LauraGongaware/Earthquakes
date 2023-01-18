@@ -13,7 +13,7 @@ body {
 .parallax {
     /* height: 100%;  */
     /* height: 575px; */
-    height: 83%;
+    height: 80%;
   }
 
   /* (A) WRAPPER */
@@ -101,8 +101,9 @@ body {
   width: auto;
 }
 
-.mapInfoBox {
+#mapInfoBox {
   font-size: 15pt;
   color: white;
   text-align: center;
 }
+    
