@@ -36,3 +36,30 @@ html, body {
     background-color: white;
     color: black;
   }
+
+
+.overlay {
+    position: absolute;
+    padding:20px;
+    right: 0;
+    bottom: 0;
+    top: 20%;
+    width: 90%;
+    z-index: 9999;
+}
+  
+.FirstDIV {
+    background-color: #FDC9B3;
+    height: 200px;
+    right: 0;
+    bottom: 0;
+    top: 20%;
+    width: 100%;
+    z-index: 9999;
+}
+
+/* img {
+  object-fit: cover;
+  background-color: #FDC9B3;
+  height: 300;
+} */

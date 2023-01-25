@@ -14,7 +14,7 @@ model.db.create_all()
 
 
 # earthquake_json = open('Data/query.json').read()
-earthquake_json = open('Data/2022.json').read()
+earthquake_json = open('Data/2023.json').read()
 query_dictionary = json.loads(earthquake_json)['features']
 
 # for key, value in query_dictionary.items():

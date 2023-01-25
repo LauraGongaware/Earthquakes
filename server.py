@@ -16,6 +16,11 @@ def homepage():
     """View Homepage"""
     return render_template("homepage.html")
 
+@app.route("/about")
+def about():
+    """View about me page"""
+    return render_template("about.html")
+
 
 @app.route("/mapbox")
 def mapbox():
@@ -44,6 +49,7 @@ def heatmap():
 @app.route("/api/earthquakes")
 def earthquake_info():
     earthquakes_map = []
+    # for earthquake in Earthquake.query.limit(10000):
     for earthquake in Earthquake.query.limit(100):
     # for earthquake in Earthquake.query.all():
         geoJSON_object = {
@@ -91,9 +97,7 @@ def heatmap_():
             earthquake.longitude,
             earthquake.latitude,
             earthquake.depth
-            ]
-            }
-
+            ]}
         properties = {
             "url": earthquake.url,
             "latitude": earthquake.latitude,
@@ -103,18 +107,15 @@ def heatmap_():
             "dateTime": earthquake.dateTime,
             "depth":earthquake.depth
         }
-
         earthquakes_map.append({
             "type": "Feature",
             "geometry": geoJSON_object,
             "properties": properties
-            
         })
     data_object = {
         "type": "FeatureCollection",
         "features": earthquakes_map
     }
-
     return jsonify(data_object)
 
 
@@ -129,28 +130,19 @@ def significant_earthquake_info():
             earthquake.longitude,
             earthquake.latitude,
             earthquake.depth
-            ]
-            }
-
+            ]}
         properties = {
-            "url": earthquake.url,
-            "latitude": earthquake.latitude,
-            "longitude": earthquake.longitude,
-            "location": earthquake.location,
             "magnitude": earthquake.magnitude,
             "dateTime": earthquake.dateTime,
-            "depth":earthquake.depth
         }
-
         earthquakes_map.append({
             "type": "Feature",
             "geometry": geoJSON_object,
             "properties": properties
-
         })
-    data_object = {
-        "type": "FeatureCollection",
-        "features": earthquakes_map
+        data_object = {
+            "type": "FeatureCollection",
+             "features": earthquakes_map
     }
     return jsonify(data_object)
 
@@ -160,8 +152,8 @@ def significant_earthquake_info():
 def earthquake_gmap_info():
     earthquakes_gmap = []
     # for earthquake in Earthquake.query.limit(100):
-    # for earthquake in Earthquake.query.filter(extract('year', Earthquake.dateTime).in_([2022, 2023])).all():
-    for earthquake in Earthquake.query.filter(extract('year', Earthquake.dateTime).in_([2022, 2023])).limit(100):
+    # for earthquake in Earthquake.query.filter(extract('year', Earthquake.dateTime).in_([2022, 2023])).all(): //.limit(100):
+    for earthquake in Earthquake.query.filter(extract('year', Earthquake.dateTime).in_([2023])).all():
         earthquakes_gmap.append({
             "url": earthquake.url,
             "latitude": earthquake.latitude,
@@ -175,7 +167,6 @@ def earthquake_gmap_info():
         "type": "FeatureCollection",
         "features": earthquakes_gmap
     }
-
     return jsonify(data_object)
 
 

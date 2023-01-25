@@ -4,12 +4,11 @@
     <script src="/static/js/homepage.js"></script>
 {% endblock %}
 
-<!-- {% block body %} -->
+{% block body %}
 <body onload="document.body.style.opacity='1'">
     <div class="parallax">
-   
     </div>
-    <div style="height:700px;background-color:black;font-size:25px; color: white;">
+    <div style="height:600px;background-color:black;font-size:25px; color: white;">
       <div class = "container">
         <div class="row"><div class="col">
           <h1 style="color: white; font-size: 100px; text-align:center;">Earthquake Maps</h1></div>
@@ -48,17 +47,19 @@
   <footer class="static-bottom"; style="background-color: black; padding-bottom: 10px;">
     <div class="container">
       <div class="row">
-        <div class ="col-2">Laura Gongaware</div>
         <div class ="col-1"><a href="https://github.com/LauraGongaware"><img src="static/img/github.png" width="25"></a></div>
         <div class ="col-1"><a href="https://www.linkedin.com/in/laura-gongaware/"><img src="static/img/linkedin.png" width="25"></a></div>
+        <div class ="col-1"><a href="/about"><img src="static/img/about.png" width="25"></a></div>
+        <div class ="col-1"><a href="https://www.usgs.gov"><img src="static/img/usgs.png" width="70"></a></div>
+        <div class="col-6 text-right" id="backgroundinfo"></div>
       </div>
     </div>
   </footer>  
   <script type="text/javascript"> 
     RandomBackground();
     DefaultText()
-    // BackgroundInfo();
+    BackgroundInfo();
   </script>
 </body>
 
-<!-- {% endblock %} -->
+{% endblock %}

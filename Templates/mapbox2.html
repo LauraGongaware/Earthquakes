@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Create a time slider</title>
+<title>Signicant Earthquakes 2012 - 2023</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
 <link rel="stylesheet" href="/static/css/maps.css">
@@ -13,10 +13,10 @@ body { margin: 0; padding: 0; }
 </style>
 <div class="topnav">
     <a href="/">Home</a>
-    <a href="/map/heatmap">Heatmap</a>
     <a href="/map/earthquakes">Earthquake Details</a>
+    <a href="/map/heatmap">Heatmap</a>
     <a class="current" href="/map/significant">Significant Earthquakes</a>
-    <a href="">About</a>
+    <a href="/about">About</a>
   </div>
 </head>
 <body>
@@ -65,10 +65,11 @@ cursor: ew-resize;
  
 <div class="map-overlay top">
 <div class="map-overlay-inner">
-<h2>Significant earthquakes in the last decade</h2>
+<h2>Significant earthquakes</h2>
 <p><h3>Magnitude 6 or greater</h3></p>
+<h3>2012 to 2023</h3>
 <label id="year"></label>
-<input id="slider" type="range" min="0" max="11" step="1" value="0">
+<input id="slider" type="range" min="0" max="11" step="1" value="11">
 <div class="map-overlay-inner">
     <div id="legend" class="legend">
     <div class="bar"></div>
@@ -188,7 +189,9 @@ map.addLayer({
  
 // Set filter to first year of the collecion
 // 0 = 2012
-    filterBy(0);
+// 11 = 2023
+// If we want to start at a different year, make sure to change it in slider above as well
+    filterBy(11);
  
     document.getElementById('slider').addEventListener('input', (e) => {
         const year = parseInt(e.target.value, 10);

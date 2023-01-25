@@ -67,8 +67,10 @@ function initMap() {
       alert(`
       We were unable to retrieve data about earthquakes :(
     `);
-    var Marker = new MarkerCluster(map, earthquakeMarker, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-    Marker.addMarkers(earthquakeMarker);
+
+    //TO DO Marker Cluster 
+    // var Marker = new MarkerCluster(map, earthquakeMarker, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    // Marker.addMarkers(earthquakeMarker);
     });
     
     
