@@ -40,6 +40,6 @@ var imgButtons = document.querySelectorAll("heatmap, details, significant")
     );}
 
     function DefaultText() {
-    (document.getElementById("mapInfoBox").innerHTML = "Earthquake data obtained from the United States Geological Survey (USGS). Hover over a map image to learn more."
+    (document.getElementById("mapInfoBox").innerHTML = "Earthquake data obtained from the United States Geological Survey (USGS). Hover over a map image for more information."
     );
 }
