@@ -20,5 +20,12 @@ Earthquake Maps is a web application that allows users to interact with United S
 - View a heatmap of worldwide earthquake data made with Mapbox
 - View 11 years of significant earthquakes interacted with a slider also using Mapbox
   
-  <p align="center"><img src= "https://media.giphy.com/media/uMZqcblboo6Olyh8H2/giphy.gif" width=50%></p>
+<p align="center">
+  <img src= "https://media.giphy.com/media/uMZqcblboo6Olyh8H2/giphy.gif" width=50%>
+  <img src= "https://media.giphy.com/media/YVLXVktQeAMqy1Z8ff/giphy.gif" width=50%>
+  <img src= "https://media.giphy.com/media/XX48eKishnWaGI2dMm/giphy.gif" width=50%>
+</p>
+  
+ 
+  
   
