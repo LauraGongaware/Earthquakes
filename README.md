@@ -1,7 +1,7 @@
 # Earthquakes
 
 Earthquake Maps is a web application that allows users to interact with United States Geological Survey (USGS) earthquake data in different maps.
-<p align="center"><img src= "https://media.giphy.com/media/U3jjxWzMLGGlsNgCQH/giphy.gif" width=25% height=25%></p>
+<p align="center"><img src= "https://media.giphy.com/media/U3jjxWzMLGGlsNgCQH/giphy.gif" width=50%</p>
 
 **Tech Stack:**
 - Python
